@@ -21,7 +21,7 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: cargo run --help
-      run: cargo run --help
+      run: cargo run -- --help
     - name: query ero_sagiri uuid
       run: cargo run ero_sagiri
       

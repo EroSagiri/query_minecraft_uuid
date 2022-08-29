@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use clap::Parser;
 use serde::{Serialize, Deserialize};
 
@@ -19,7 +20,7 @@ async fn main() {
 
             match uuid {
                 Ok(uuid) => {
-                    println!("{}", uuid.to_string())
+                    println!("{}", uuid)
                 }
 
                 Err(e) => {
@@ -40,7 +41,11 @@ struct Uuid {
 }
 
 impl Uuid {
-    pub fn to_string(self) -> String {
-        return format!("{name} {id}", name = self.name, id = self.id)
+
+}
+
+impl Display for Uuid {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} {}", self.name, self.id)
     }
 }

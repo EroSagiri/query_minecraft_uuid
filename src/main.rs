@@ -8,6 +8,12 @@ pub mod minecraft {
     pub mod name;
 }
 
+#[cfg(test)]
+pub mod tests {
+    #[cfg(test)]
+    pub mod api;
+}
+
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {

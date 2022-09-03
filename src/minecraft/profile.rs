@@ -5,9 +5,9 @@ use super::propertie::Propertie;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Profile {
-    id: String,
-    name: String,
-    properties: Vec<Propertie>
+    pub id: String,
+    pub name: String,
+    pub properties: Vec<Propertie>
 }
 
 impl Display for Profile {

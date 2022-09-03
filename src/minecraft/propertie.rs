@@ -3,8 +3,8 @@ use std::fmt::{Display, Formatter};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Propertie{
-    name: String,
-    value: String
+    pub name: String,
+    pub value: String
 }
 
 impl Display for Propertie {

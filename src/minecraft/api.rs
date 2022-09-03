@@ -4,7 +4,7 @@ use crate::minecraft::uuid::Uuid;
 use super::{profile::Profile, name::{Name}};
 
 ///通过用户名获取用户uuid
-pub(crate) async fn get_uuid_by_name(name: &str) -> Result<Uuid, Error> {
+pub async fn get_uuid_by_name(name: &str) -> Result<Uuid, Error> {
     let rest = reqwest::get(format!("https://api.mojang.com/users/profiles/minecraft/{name}", name = name)).await.unwrap();
 
     let uuid = rest.json::<Uuid>().await;

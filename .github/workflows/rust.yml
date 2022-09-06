@@ -24,4 +24,8 @@ jobs:
       run: cargo run -- --help
     - name: query ero_sagiri uuid
       run: cargo run ero_sagiri
-      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: query_minecraft_uuid
+        path: ${{ github.workspace }}/target/debug/query_minecraft_uuid

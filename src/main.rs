@@ -2,10 +2,10 @@ use clap::Parser;
 
 pub mod minecraft {
     pub mod api;
+    pub mod name;
     pub mod profile;
     pub mod propertie;
     pub mod uuid;
-    pub mod name;
 }
 
 #[cfg(test)]
@@ -23,12 +23,24 @@ struct Args {
 }
 
 #[tokio::main]
-async fn main() {
+pub async fn main() {
     let args: Args = Args::parse();
     let uuid = crate::minecraft::api::get_uuid_by_name(&args.name).await;
     match uuid {
         Ok(uuid) => {
-            println!("{}", uuid)
+            println!("{}", uuid);
+            let names = crate::minecraft::api::get_all_name_by_uuid(&uuid.id).await;
+
+            match names {
+                Ok(names) => {
+                    for name in names {
+                        println!("{}", name);
+                    }
+                }
+                Err(error) => {
+                    eprintln!("{}", error.to_string());
+                }
+            }
         }
         Err(err) => {
             eprintln!("{}", err.to_string())

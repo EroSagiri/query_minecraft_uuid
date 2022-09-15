@@ -29,18 +29,18 @@ pub async fn main() {
     match uuid {
         Ok(uuid) => {
             println!("{}", uuid);
-            let names = crate::minecraft::api::get_all_name_by_uuid(&uuid.id).await;
+            // let names = crate::minecraft::api::get_all_name_by_uuid(&uuid.id).await;
 
-            match names {
-                Ok(names) => {
-                    for name in names {
-                        println!("{}", name);
-                    }
-                }
-                Err(error) => {
-                    eprintln!("{}", error.to_string());
-                }
-            }
+            // match names {
+            //     Ok(names) => {
+            //         for name in names {
+            //             println!("{}", name);
+            //         }
+            //     }
+            //     Err(error) => {
+            //         eprintln!("{}", error.to_string());
+            //     }
+            // }
         }
         Err(err) => {
             eprintln!("{}", err.to_string())

@@ -5,10 +5,17 @@ use super::{profile::Profile, name::{Name}};
 
 ///通过用户名获取用户uuid
 pub async fn get_uuid_by_name(name: &str) -> Result<Uuid, Error> {
-    let rest = reqwest::get(format!("https://api.mojang.com/users/profiles/minecraft/{name}", name = name)).await.unwrap();
+    let rest = reqwest::get(format!("https://api.mojang.com/users/profiles/minecraft/{name}", name = name)).await;
 
-    let uuid = rest.json::<Uuid>().await;
-    return uuid
+    match rest {
+        Ok(rest) => {
+            let uuid = rest.json::<Uuid>().await;
+            return uuid;
+        },
+        Err(e) => {
+            Err(e)
+        },
+    }
 }
 
 ///通过uuid得到用户信息

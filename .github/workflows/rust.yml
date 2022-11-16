@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  schedule:
+    - cron: '5 5 * * *'
 
 env:
   CARGO_TERM_COLOR: always
@@ -17,15 +19,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --verbose --release
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --verbose --release
     - name: cargo run --help
-      run: cargo run -- --help
+      run: cargo run --release -- --help
     - name: query ero_sagiri uuid
-      run: cargo run ero_sagiri
+      run: cargo run --release ero_sagiri
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: query_minecraft_uuid
-        path: ${{ github.workspace }}/target/debug/query_minecraft_uuid
+        path: ${{ github.workspace }}/target/release/query_minecraft_uuid
